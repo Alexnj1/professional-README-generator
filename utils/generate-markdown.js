@@ -11,34 +11,87 @@ function renderLicenseLink(license) {}
 function renderLicenseSection(license) {}
 
 // TODO: Create a function to generate markdown for README
-function generateMarkdown(data) {
+function generateContributors(markdownData) {
+  var x = [];
+  console.log(markdownData);
+  for (i = 0; i < markdownData.contributors.length; i++) {
+    x.push(`### ${markdownData.contributors[i].contribution}` + "\r\n");
+  }
+  return x.join("");
+}
+
+function generateInstallInstructions(markdownData) {
+  if (!markdownData.codeInstallation) {
+      return `### ${markdownData.installation[0].installation}`
+  } else {
+    var x = [];
+    for (i = 0; i < markdownData.codeInstallation.length; i++) {
+      x.push(
+        `    ${markdownData.codeInstallation[i].code}` +
+          "\r\n" +
+          `### ${markdownData.codeInstallation[i].codeDescription}` +
+          "\r\n"
+      );
+    }
+    return x.join("");
+  }
+}
+
+function generateMarkdown(markdownData) {
   return `
-  # ${data.title}
+  # ${markdownData.title}
 
   ## Description
-  ### ${data.description}
+
+  #
+
+  ### ${markdownData.description}
 
   ## Table of Contents
-  * [Installation Instructions] (## Installation Instructions)
+
+  #
+
+  * [Installation Instructions](#installation-instructions)
+  * [Intended Use](#usage)
+  * [Contribution](#contribution)
+  * [Tests](#testing-instructions)
+  * [Questions](#questions)
 
   ## Installation Instructions
-  ### ${data.installation}
 
-  ## Intended Use
-  ### ${data.usage}
+  #
+
+  ${generateInstallInstructions(markdownData)}
+
+  ## Usage
+
+  #
+
+  ### ${markdownData.usage}
   
-  ## Contributor(s)
-  ### ${data.contribution}
+  ## Contribution
+
+  #
+
+${generateContributors(markdownData)}
   
   ## Testing Instructions
-  ### ${data.testing}
+
+  #
+
+  ### Refer to the video below
   
   ## Questions
+
+  #
+  
   ### If there are any questions, including those about the use of this application, refer to the information below.
   
-  ### Link to the main contributor's GitHub profile: www.github.com/${data.username}
+  ### Link to the main contributor's GitHub profile: [${
+    markdownData.username
+  }](www.github.com/${markdownData.username})
 
-  ### Link to the main contributor's email address: ${data.email}`;
+  ### Link to the main contributor's email address: ${markdownData.email}`;
 }
 
 module.exports = generateMarkdown;
