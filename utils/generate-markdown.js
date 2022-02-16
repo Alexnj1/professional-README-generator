@@ -18,17 +18,27 @@ function generateMarkdown(data) {
   ## Description
   ### ${data.description}
 
+  ## Table of Contents
+  * [Installation Instructions] (## Installation Instructions)
+
   ## Installation Instructions
   ### ${data.installation}
 
   ## Intended Use
   ### ${data.usage}
   
-  ## Contributors
+  ## Contributor(s)
   ### ${data.contribution}
   
   ## Testing Instructions
-  ### ${data.testing}`;
+  ### ${data.testing}
+  
+  ## Questions
+  ### If there are any questions, including those about the use of this application, refer to the information below.
+  
+  ### Link to the main contributor's GitHub profile: www.github.com/${data.username}
+
+  ### Link to the main contributor's email address: ${data.email}`;
 }
 
 module.exports = generateMarkdown;
