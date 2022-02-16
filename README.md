@@ -52,6 +52,6 @@
 
 ### If there are any questions, including those about the use of this application, refer to the information below.
 
-### Link to the main contributor's GitHub profile: [alexnj1](www.github.com/alexnj1)
+### Link to the main contributor's GitHub profile: [alexnj1](https://www.github.com/alexnj1)
 
 ### Link to the main contributor's email address: alexnoble143.an@gmail.com
