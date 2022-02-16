@@ -2,7 +2,6 @@ const fs = require("fs");
 const inquirer = require("inquirer");
 const generateMarkdown = require("./utils/generate-markdown");
 
-// TODO: Create an array of questions for user input
 const questions = () => {
   return inquirer.prompt([
     {
@@ -70,19 +69,6 @@ const questions = () => {
         }
       },
     },
-    // {
-    //   type: "input",
-    //   name: "testing",
-    //   message: "What are the instructions on how to use your project?",
-    //   validate: (input) => {
-    //     if (input) {
-    //       return true;
-    //     } else {
-    //       console.log("Please enter your usage instructions!");
-    //       return false;
-    //     }
-    //   },
-    // },
   ]);
 };
 
@@ -175,15 +161,6 @@ function codeBlockQuestions(markdownData) {
         name: 'confirmBlocks',
         message: 'Would you like to add another code block?',
         default: false
-        // when: ({confirmBlocks}) => {
-            
-        //     if (confirmBlocks) {
-        //         codeBlockQuestions()
-        //     } else {
-        //         markdownData.codeInstallation.push
-        //         return markdownData
-        //     }
-        // }
     }
   ]).then((codeBlockData) => {
     markdownData.codeInstallation.push(codeBlockData);
@@ -232,10 +209,6 @@ function contributors(markdownData) {
     });
 }
 
-// TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
-
-// TODO: Create a function to initialize app
 function init() {
   questions()
     .then(contributors)
@@ -244,12 +217,10 @@ function init() {
       return generateMarkdown(markdownData);
     })
     .then((info) => {
-      fs.writeFile("./README.md", info, (err) => {
+      fs.writeFile("./dist/README.md", info, (err) => {
         if (err) throw err;
       });
-    });
-  //
+    }).then(console.log('README.md file has been created! See the "dist" folder.'));
 }
 
-// Function call to initialize app
 init();

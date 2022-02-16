@@ -84,12 +84,12 @@ ${generateContributors(markdownData)}
   ## Questions
 
   #
-  
+
   ### If there are any questions, including those about the use of this application, refer to the information below.
   
   ### Link to the main contributor's GitHub profile: [${
     markdownData.username
-  }](www.github.com/${markdownData.username})
+  }](https://www.github.com/${markdownData.username})
 
   ### Link to the main contributor's email address: ${markdownData.email}`;
 }
