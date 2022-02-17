@@ -1,16 +1,35 @@
-// TODO: Create a function that returns a license badge based on which license is passed in
-// If there is no license, return an empty string
-function renderLicenseBadge(license) {}
+function renderLicenseBadge(markdownData) {
+    if (markdownData.license === 'None') {
+        return ''
+    } else if (markdownData.license === 'MIT') {
+        return `[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)`
+    } else if (markdownData.license === 'GNU GPLv3') {
+        return `[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)`
+    } else if (markdownData.license === 'Apache 2.0') {
+        return `[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)`
+    } else if (markdownData.license === 'ISC') {
+        return `[![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](https://opensource.org/licenses/ISC)`
+    } else if (markdownData.license === 'Mozilla') {
+        return `[![License: MPL 2.0](https://img.shields.io/badge/License-MPL_2.0-brightgreen.svg)](https://opensource.org/licenses/MPL-2.0)`
+    }
+}
 
-// TODO: Create a function that returns the license link
-// If there is no license, return an empty string
-function renderLicenseLink(license) {}
+function renderLicenseSection(markdownData) {
+    if (markdownData.license === 'None') {
+        return `### There is no licensing information for this project.`
+    } else if (markdownData.license === 'MIT') {
+        return `### This project is licensed under the MIT open source license. Visit [Open Source Initiative](http://www.opensource.org/licenses/MIT) for the full license documentation.`
+    } else if (markdownData.license === 'GNU GPLv3') {
+        return `### This project is licensed under the GNU GPLv3 open source license. Visit [Open Source Initiative](http://www.opensource.org/licenses/gpl-3.0) for the full license documentation.`
+    } else if (markdownData.license === 'Apache 2.0') {
+        return `### This project is licensed under the Apache 2.0 open source license. Visit [Open Source Initiative](http://www.opensource.org/licenses/Apache-2.0) for the full license documentation.`
+    } else if (markdownData.license === 'ISC') {
+        return `### This project is licensed under the ISC open source license. Visit [Open Source Initiative](http://opensource.org/licenses/ISC) for the full license documentation.`
+    } else if (markdownData.license === 'Mozilla') {
+        return `### This project is licensed under the Mozilla open source license. Visit [Open Source Initiative](http://opensource.org/licenses/MPL-2.0) for the full license documentation.`
+    }
+}
 
-// TODO: Create a function that returns the license section of README
-// If there is no license, return an empty string
-function renderLicenseSection(license) {}
-
-// TODO: Create a function to generate markdown for README
 function generateContributors(markdownData) {
   var x = [];
   console.log(markdownData);
@@ -41,6 +60,8 @@ function generateMarkdown(markdownData) {
   return `
   # ${markdownData.title}
 
+  ${renderLicenseBadge(markdownData)}
+
   ## Description
 
   #
@@ -56,6 +77,7 @@ function generateMarkdown(markdownData) {
   * [Contribution](#contribution)
   * [Tests](#testing-instructions)
   * [Questions](#questions)
+  * [License](#license)
 
   ## Installation Instructions
 
@@ -91,7 +113,14 @@ ${generateContributors(markdownData)}
     markdownData.username
   }](https://www.github.com/${markdownData.username})
 
-  ### Link to the main contributor's email address: ${markdownData.email}`;
+  ### Link to the main contributor's email address: ${markdownData.email}
+  
+  ## License
+  
+  #
+  
+  ${renderLicenseSection(markdownData)}
+  `;
 }
 
 module.exports = generateMarkdown;

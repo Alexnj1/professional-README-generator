@@ -69,6 +69,13 @@ const questions = () => {
         }
       },
     },
+    {
+        type: 'list',
+        name: 'license',
+        message: 'Which license would you like to include for your project? Default is None.',
+        choices: ['None', 'MIT', 'GNU GPLv3', 'Apache 2.0', 'ISC', 'Mozilla'],
+        default: [0]
+    }
   ]);
 };
 
@@ -83,7 +90,7 @@ function installation(markdownData) {
         type: "confirm",
         name: "confirmCode",
         message: "Do your installation instructions include code blocks?",
-        default: false,
+        default: true,
       },
     ])
     .then((confirm) => {
@@ -91,10 +98,10 @@ function installation(markdownData) {
         console.log(`
         =================================
 
-        Enter Installation Instructions
+         Enter Installation Instructions
 
-            Enter a code block and a
-        description for that code block
+             Enter a code block and a
+         description for that code block
 
         =================================
   
@@ -104,72 +111,76 @@ function installation(markdownData) {
         console.log(`
         =================================
 
-        Enter Installation Instructions
+         Enter Installation Instructions
 
         =================================
   
         `);
-          return inquirer 
-          .prompt ([
-              {
-                  type: 'input',
-                  name: 'installation',
-                  message: 'what are the installation instructions for your project?'
-              }
-          ]).then((installationData) => {
-              markdownData.installation.push(installationData)
-              return markdownData
-          })
+        return inquirer
+          .prompt([
+            {
+              type: "input",
+              name: "installation",
+              message:
+                "what are the installation instructions for your project?",
+            },
+          ])
+          .then((installationData) => {
+            markdownData.installation.push(installationData);
+            return markdownData;
+          });
       }
     });
 }
 
 function codeBlockQuestions(markdownData) {
-    if (!markdownData.codeInstallation) {
-        markdownData.codeInstallation = [];
-    }
+  if (!markdownData.codeInstallation) {
+    markdownData.codeInstallation = [];
+  }
 
-  return inquirer.prompt([
-    {
-      type: "input",
-      name: "code",
-      message: "Enter a block of code",
-      validate: (input) => {
-        if (input) {
-          return true;
-        } else {
-          console.log("Please enter a block of code!");
-          return false;
-        }
+  return inquirer
+    .prompt([
+      {
+        type: "input",
+        name: "code",
+        message: "Enter a block of code",
+        validate: (input) => {
+          if (input) {
+            return true;
+          } else {
+            console.log("Please enter a block of code!");
+            return false;
+          }
+        },
       },
-    },
-    {
-      type: "input",
-      name: "codeDescription",
-      message: "Enter a description",
-      validate: (input) => {
-        if (input) {
-          return true;
-        } else {
-          console.log("Please enter a description!");
-          return false;
-        }
+      {
+        type: "input",
+        name: "codeDescription",
+        message: "Enter a description",
+        validate: (input) => {
+          if (input) {
+            return true;
+          } else {
+            console.log("Please enter a description!");
+            return false;
+          }
+        },
       },
-    },
-    {
-        type: 'confirm',
-        name: 'confirmBlocks',
-        message: 'Would you like to add another code block?',
-        default: false
-    }
-  ]).then((codeBlockData) => {
-    markdownData.codeInstallation.push(codeBlockData);
-    if (codeBlockData.confirmBlocks) {
-      return codeBlockQuestions(markdownData);
-    } else {
-      return markdownData;
-    }
-  });
+      {
+        type: "confirm",
+        name: "confirmBlocks",
+        message: "Would you like to add another code block?",
+        default: true,
+      },
+    ])
+    .then((codeBlockData) => {
+      markdownData.codeInstallation.push(codeBlockData);
+      if (codeBlockData.confirmBlocks) {
+        return codeBlockQuestions(markdownData);
+      } else {
+        return markdownData;
+      }
+    });
 }
 
 function contributors(markdownData) {
@@ -196,7 +207,7 @@ function contributors(markdownData) {
         type: "confirm",
         name: "confirmAddContributor",
         message: "Would you like to enter another contributor?",
-        default: false,
+        default: true,
       },
     ])
     .then((contributorData) => {
@@ -219,8 +230,9 @@ function init() {
     .then((info) => {
       fs.writeFile("./dist/README.md", info, (err) => {
         if (err) throw err;
+        console.log('Your README.md file has been created! See the "dist" folder.')
       });
-    }).then(console.log('README.md file has been created! See the "dist" folder.'));
+    })
 }
 
 init();
