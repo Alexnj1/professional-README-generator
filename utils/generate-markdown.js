@@ -64,13 +64,11 @@ function generateMarkdown(markdownData) {
 
   ## Description
 
-  #
 
   ### ${markdownData.description}
 
   ## Table of Contents
 
-  #
 
   * [Installation Instructions](#installation-instructions)
   * [Intended Use](#usage)
@@ -81,31 +79,26 @@ function generateMarkdown(markdownData) {
 
   ## Installation Instructions
 
-  #
 
   ${generateInstallInstructions(markdownData)}
 
   ## Usage
 
-  #
 
   ### ${markdownData.usage}
   
   ## Contribution
 
-  #
 
 ${generateContributors(markdownData)}
   
   ## Testing Instructions
 
-  #
 
   ### Refer to the video below
   
   ## Questions
 
-  #
 
   ### If there are any questions, including those about the use of this application, refer to the information below.
   
@@ -117,7 +110,6 @@ ${generateContributors(markdownData)}
   
   ## License
   
-  #
   
   ${renderLicenseSection(markdownData)}
   `;
