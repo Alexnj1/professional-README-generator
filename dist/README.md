@@ -1,17 +1,15 @@
 
-  # readme generator
+  # professional-README-generator
 
-  [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
   ## Description
 
-  #
 
-  ### man idk
+  ### This is a GitHub README generator. It allows any project to stand out among others with a high quality README template. The user is able to enter all pertinent information about their project directly into their command line and a resulting file will be generated.
 
   ## Table of Contents
 
-  #
 
   * [Installation Instructions](#installation-instructions)
   * [Intended Use](#usage)
@@ -22,32 +20,31 @@
 
   ## Installation Instructions
 
-  #
 
-  ### cwec
+      npm install
+### After this repository is cloned, open the command line in the repository's root directory and enter this command to install the required dependencies to your system.
+    node index.js
+### In the repository's root directory, enter this command to initialize the application.
+
 
   ## Usage
 
-  #
 
-  ### shut up
+  ### To utilize node.js, inquirer.js and the command line to generate professional README files for any project on GitHub.
   
   ## Contribution
 
-  #
 
-### alex noble-james
+### Alex Noble-James
 
   
   ## Testing Instructions
 
-  #
 
   ### Refer to the video below
   
   ## Questions
 
-  #
 
   ### If there are any questions, including those about the use of this application, refer to the information below.
   
@@ -57,7 +54,6 @@
   
   ## License
   
-  #
   
-  ### This project is licensed under the Apache 2.0 open source license. Visit [Open Source Initiative](http://www.opensource.org/licenses/Apache-2.0) for the full license documentation.
+  ### This project is licensed under the MIT open source license. Visit [Open Source Initiative](http://www.opensource.org/licenses/MIT) for the full license documentation.
   
